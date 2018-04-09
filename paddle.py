@@ -34,9 +34,9 @@ class Paddle(Sprite):
         self.moving_down = False
 
     def update(self):
-        if self.moving_up:
+        if self.moving_up and self.rect.top > self.screen_rect.top:
             self.test -= self.ai_settings.paddle_speed
-        elif self.moving_down:
+        elif self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.test += self.ai_settings.paddle_speed
 
         self.rect.centery = self.test
