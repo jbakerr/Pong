@@ -27,12 +27,12 @@ def run_game():
 
     while True:
 
-        pygame.display.flip()
-        gf.check_events()
+        gf.check_events(ai_settings, screen, human_paddle)
+        human_paddle.update()
         ball.draw_ball()
         human_paddle.draw_paddle()
         ai_paddle.draw_paddle()
-
+        pygame.display.flip()
 
 
 
