@@ -31,3 +31,13 @@ def check_up_events(event, ai_settings, screen, paddle):
         paddle.moving_up = False
     elif event.key == pygame.K_DOWN:
         paddle.moving_down = False
+
+
+def update_screen(ai_settings, screen, human_paddle, ai_paddle, ball):
+    screen.fill((0, 0, 0))
+    ball.draw_ball()
+    ai_paddle.draw_paddle()
+    human_paddle.draw_paddle()
+    pygame.display.flip()
+
+

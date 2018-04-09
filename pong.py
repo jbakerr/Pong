@@ -18,8 +18,6 @@ def run_game():
 
     pygame.display.set_caption("Pong")
 
-    screen.fill((0, 0, 0))
-
     ball = Ball(ai_settings, screen)
 
     human_paddle = Paddle(ai_settings, screen, 'right')
@@ -29,10 +27,8 @@ def run_game():
 
         gf.check_events(ai_settings, screen, human_paddle)
         human_paddle.update()
-        ball.draw_ball()
-        human_paddle.draw_paddle()
-        ai_paddle.draw_paddle()
-        pygame.display.flip()
+        gf.update_screen(ai_settings, screen, human_paddle, ai_paddle, ball)
+
 
 
 

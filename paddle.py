@@ -28,18 +28,19 @@ class Paddle(Sprite):
             ai_settings.paddle_height
         )
 
-        self.center = float(self.rect.y)
+        self.test = float(self.rect.centery)
 
         self.moving_up = False
         self.moving_down = False
 
     def update(self):
         if self.moving_up:
-            self.center -= self.ai_settings.paddle_speed
+            self.test -= self.ai_settings.paddle_speed
         elif self.moving_down:
-            self.center += self.ai_settings.paddle_speed
+            self.test += self.ai_settings.paddle_speed
 
-        self.rect.y = self.center
+        self.rect.centery = self.test
+        # self.rect.y = self.y
 
     def draw_paddle(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
