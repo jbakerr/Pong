@@ -5,8 +5,6 @@ from pygame.sprite import Sprite
 import math
 
 
-
-
 class Ball(Sprite):
     """A class to manage the main ball"""
 

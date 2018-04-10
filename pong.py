@@ -31,6 +31,8 @@ def run_game():
         gf.check_events(ai_settings, screen, human_paddle)
         human_paddle.update()
         ball.update()
+        gf.ai_update(ball, ai_paddle, ai_settings)
+        ai_paddle.update()
         gf.update_ball(ai_settings, screen, human_paddle, ai_paddle, ball)
         gf.update_screen(ai_settings, screen, human_paddle, ai_paddle, ball)
 

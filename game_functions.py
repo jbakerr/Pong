@@ -47,10 +47,9 @@ def update_screen(ai_settings, screen, human_paddle, ai_paddle, ball):
 def update_ball(ai_settings, screen, human_paddle, ai_paddle, ball):
     if ball.rect.collidelist([human_paddle, ai_paddle]) > -1:
         paddle_bounce(ball)
-    if ball.check_top():
+    if ball.check_top() or ball.check_bottom():
         top_bouce(ball)
-    if ball.check_bottom():
-        top_bouce(ball)
+
 
 
 def paddle_bounce(ball):
@@ -60,3 +59,13 @@ def top_bouce(ball):
     if ball.check_top:
         ball.angle = math.pi - ball.angle
 
+
+def ai_update(ball, ai_paddle, ai_settings):
+    if ai_paddle.rect.y < ball.rect.y:
+        ai_paddle.moving_down = True
+    else:
+        ai_paddle.moving_down = False
+    if ai_paddle.rect.y > ball.rect.y:
+        ai_paddle.moving_up = True
+    else:
+        ai_paddle.moving_up = False
