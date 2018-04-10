@@ -23,10 +23,15 @@ def run_game():
     human_paddle = Paddle(ai_settings, screen, 'right')
     ai_paddle = Paddle(ai_settings, screen, 'left')
 
+    game_active = True
+
+
     while True:
 
         gf.check_events(ai_settings, screen, human_paddle)
         human_paddle.update()
+        ball.update()
+        gf.update_ball(ai_settings, screen, human_paddle, ai_paddle, ball)
         gf.update_screen(ai_settings, screen, human_paddle, ai_paddle, ball)
 
 

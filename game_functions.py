@@ -5,6 +5,8 @@ from ball import Ball
 
 from paddle import Paddle
 
+import math
+
 
 def check_events(ai_settings, screen, paddle):
     for event in pygame.event.get():
@@ -25,6 +27,7 @@ def check_down_events(event, ai_settings, screen, paddle):
     elif event.key == pygame.K_q:
         sys.exit()
 
+
 def check_up_events(event, ai_settings, screen, paddle):
     """Respond to keypresses"""
     if event.key == pygame.K_UP:
@@ -40,4 +43,20 @@ def update_screen(ai_settings, screen, human_paddle, ai_paddle, ball):
     human_paddle.draw_paddle()
     pygame.display.flip()
 
+
+def update_ball(ai_settings, screen, human_paddle, ai_paddle, ball):
+    if ball.rect.collidelist([human_paddle, ai_paddle]) > -1:
+        paddle_bounce(ball)
+    if ball.check_top():
+        top_bouce(ball)
+    if ball.check_bottom():
+        top_bouce(ball)
+
+
+def paddle_bounce(ball):
+        ball.angle = - ball.angle
+
+def top_bouce(ball):
+    if ball.check_top:
+        ball.angle = math.pi - ball.angle
 

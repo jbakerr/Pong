@@ -13,6 +13,7 @@ class Settings():
         self.ball_height = 50
         self.ball_color = (255, 255, 255)
         self.ball_speed = 10
+        self.ball_direction = 1
 
         # Paddle settings
         self.paddle_width = 20

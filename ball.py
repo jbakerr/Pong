@@ -2,6 +2,9 @@ import pygame
 
 from pygame.sprite import Sprite
 
+import math
+
+
 
 
 class Ball(Sprite):
@@ -10,9 +13,10 @@ class Ball(Sprite):
     def __init__(self, ai_settings, screen):
         """Create a ball object that starts in the center"""
         super().__init__()
+        self.ai_settings = ai_settings
         self.screen = screen
         self.screen_rect = screen.get_rect()
-
+        self.angle = math.pi / 1.5
 
         self.rect = pygame.Rect(
             0, 0, ai_settings.ball_width, ai_settings.ball_height
@@ -23,6 +27,33 @@ class Ball(Sprite):
 
         self.color = ai_settings.ball_color
 
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
+
     def draw_ball(self):
         """Draw the ball on the screen"""
         pygame.draw.ellipse(self.screen, self.color, self.rect)
+
+    def update(self):
+        self.x += (
+            math.sin(self.angle) *
+            self.ai_settings.ball_speed *
+            self.ai_settings.ball_direction
+        )
+        self.y -= math.cos(self.angle) * self.ai_settings.ball_speed
+
+        self.rect.x = self.x
+        self.rect.y = self.y
+
+    def check_top(self):
+        """Return true if alien is at the edge of the screen"""
+
+        if self.rect.y <= self.screen_rect.top:
+            return True
+
+    def check_bottom(self):
+        """Return true if alien is at the edge of the screen"""
+
+        if self.rect.bottom >= self.screen_rect.bottom:
+            return True
+
