@@ -1,8 +1,7 @@
 import pygame
-
 from pygame.sprite import Sprite
-
 import math
+from random import choice
 
 
 class Ball(Sprite):
@@ -14,7 +13,8 @@ class Ball(Sprite):
         self.ai_settings = ai_settings
         self.screen = screen
         self.screen_rect = screen.get_rect()
-        self.angle = math.pi / 1.5
+        angle = choice([3, 1.5, 1.75, 0.75])
+        self.angle = math.pi / angle
 
         self.rect = pygame.Rect(
             0, 0, ai_settings.ball_width, ai_settings.ball_height
@@ -33,6 +33,7 @@ class Ball(Sprite):
         pygame.draw.ellipse(self.screen, self.color, self.rect)
 
     def update(self):
+
         self.x += (
             math.sin(self.angle) *
             self.ai_settings.ball_speed *
@@ -55,3 +56,8 @@ class Ball(Sprite):
         if self.rect.bottom >= self.screen_rect.bottom:
             return True
 
+    def reset_ball(self):
+        self.x = self.screen_rect.centerx
+        self.y = self.screen_rect.centery
+        angle = choice([3, 1.5, 1.75, 0.75])
+        self.angle = math.pi / angle

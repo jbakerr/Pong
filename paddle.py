@@ -44,3 +44,6 @@ class Paddle(Sprite):
 
     def draw_paddle(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
+
+    def reset_paddle(self):
+        self.y = self.screen_rect.centery - (self.ai_settings.paddle_height / 2)
